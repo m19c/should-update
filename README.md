@@ -1,5 +1,7 @@
-# should-update
-## Synopsis
+`should-update`
+===============
+
+## SYNOPSIS
 One of the main-mistakes in a `react` app is that components update immediately
 if something has changed. React provides a lifecycle method called `shouldComponentUpdate`
 to speed up your components.

@@ -9,7 +9,7 @@ describe('shouldUpdate', () => {
     ).should.be.not.ok();
   });
 
-  it('has changes', () => {
+  it('changes', () => {
     shouldUpdate(
       ['id', 'user.name'],
       { id: 1, user: { name: 'Jon Doe' } },
