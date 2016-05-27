@@ -4,7 +4,8 @@
   "description": "A shouldComponentUpdate-wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require should test/"
+    "test": "mocha --compilers js:babel-core/register --require should test/",
+    "lint": "eslint index.js test/"
   },
   "keywords": [
     "react",
