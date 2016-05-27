@@ -1,6 +1,14 @@
+/**
+ * @author Marc Binder <marcandrebinder@gmail.com> (MrBoolean)
+ * @copyright 2016 MIT
+ */
+
 import { get } from 'deep-property';
 
 /**
+ * Compares the `alterable` keys of `currentProps` agains `upcomingProps`. The
+ * function returns `true` if something has changed, otherwise `false`.
+ *
  * @example
  * shouldUpdate(
  *   ['user.id', 'user.firstname', 'user.lastname', 'user.avatar.id'],
@@ -11,6 +19,7 @@ import { get } from 'deep-property';
  * @param  {array} alterable
  * @param  {object} currentProps
  * @param  {object} upcomingProps
+ *
  * @return {boolean}
  */
 export default function shouldUpdate(alterable, currentProps, upcomingProps) {
