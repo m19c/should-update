@@ -9,8 +9,17 @@
   "keywords": [
     "react",
     "component",
-    "shouldComponentUpdate"
+    "shouldComponentUpdate",
+    "should",
+    "update"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrBoolean/should-update.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrBoolean/should-update/issues"
+  },
   "author": "Marc Binder <marcandrebinder@gmail.com> (MrBoolean)",
   "license": "MIT",
   "devDependencies": {
