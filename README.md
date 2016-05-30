@@ -2,59 +2,85 @@
 ===============
 
 ## SYNOPSIS
-One of the main-mistakes in a `react` app is that components update immediately
-if something has changed. React provides a lifecycle method called `shouldComponentUpdate`
-to speed up your components.
+One of the main mistakes in a react component is, that the component does not
+include a `shouldComponentUpdate` function. Therefore, all the changes made to
+a components state or props led to a re-render.
+
+If there is a `shouldComponentUpdate` function, it mostly looks like this:
 
 ```javascript
-shouldComponentUpdate(nextProps) {
-  return (
-    this.props.id !== nextProps.id ||
-    this.props.name !== nextProps.name ||
-    this.props.something !== nextProps.something
-  );
+class Example extends Component {
+  shouldComponentUpdate(nextProps) {
+    return (
+      this.props.id !== nextProps.id ||
+      this.props.name !== nextProps.name ||
+      this.props.something !== nextProps.something
+    );
+  }
 }
 ```
 
-The example above shows a simple `shouldComponentUpdate` function. It checks the
-props `id`, `name` and `something`. At least, this function will grow as hell if
-the component held more data.
+At least, this function will grow as hell if the component held more data.
 
 ```javascript
-shouldComponentUpdate(nextProps) {
-  return (
-    this.props.id !== nextProps.id ||
-    this.props.name !== nextProps.name ||
-    this.props.something !== nextProps.something ||
-    this.props.a !== nextProps.a ||
-    this.props.b !== nextProps.b ||
-    this.props.c !== nextProps.c ||
-    this.props.some.id !== nextProps.some.id
-    // ...
-  );
+class Example extends Component {
+  shouldComponentUpdate(nextProps) {
+    return (
+      this.props.id !== nextProps.id ||
+      this.props.name !== nextProps.name ||
+      this.props.something !== nextProps.something ||
+      this.props.a !== nextProps.a ||
+      this.props.b !== nextProps.b ||
+      this.props.c !== nextProps.c ||
+      this.props.some.id !== nextProps.some.id
+      // ...
+    );
+  }
 }
 ```
 
 Hmmm... pretty ugly stuff, isn't it? With `should-update` you can reduce the
 code of the `shouldComponentUpdate` lifecycle method to a minimum.
 
+**Note**, that `should-update` also accepts nested data. To compare it you need
+to separate the keys with a dot (e.g. `some.id` or `user.email.main`).
+
 ```javascript
-shouldComponentUpdate(nextProps) {
-  return shouldUpdate(['id', 'name', 'something', 'a', 'b', 'c', 'some.id'], this.props, nextProps);
+import { shouldUpdate } from 'should-update';
+
+class Example extends Component {
+  shouldComponentUpdate(nextProps) {
+    return shouldUpdate(
+      ['id', 'name', 'something', 'a', 'b', 'c', 'some.id'],
+      this.props,
+      nextProps
+    );
+  }
 }
 ```
 
-`shouldUpdate` also accepts nested props (e.g. `user.id` or `user.email.main`).
+or:
+
+```javascript
+import { createShouldUpdate } from 'should-update';
+
+class Some {
+  shouldComponentUpdate: createShouldUpdate(['some', 'value'])
+}
+```
 
 ## API
-### `shouldUpdate(alterable, currentProps, upcomingProps)`
+### `shouldUpdate(alterable, props, upcomingProps)`
 - `alterable` - The changeable props.
-- `currentProps` - The current props (`this.props`).
-- `upcomingProps` - The upcoming props (`nextProps`).
+- `props` - The current props (`this.props`).
+- `nextProps` - The upcoming props (`nextProps`).
+
+### `createShouldUpdate(...alterable)`
+- `alterable` - The changeable props.
 
 ## Install
 ```
-$ npm i --save should-update
+npm i --save should-update
 ```
 
 ## License
