@@ -6,9 +6,6 @@
 import { get } from 'deep-property';
 
 /**
- * Compares the `alterable` keys of `currentProps` agains `upcomingProps`. The
- * function returns `true` if something has changed, otherwise `false`.
- *
  * @example
  * shouldUpdate(
  *   ['user.id', 'user.firstname', 'user.lastname', 'user.avatar.id'],
@@ -17,14 +14,14 @@ import { get } from 'deep-property';
  * );
  *
  * @param  {array} alterable
- * @param  {object} currentProps
- * @param  {object} upcomingProps
+ * @param  {object} props
+ * @param  {object} nextProps
  *
  * @return {boolean}
  */
-export default function shouldUpdate(alterable, currentProps, upcomingProps) {
+export default function shouldUpdate(alterable, props, nextProps) {
   for (let index = 0; index < alterable.length; index++) {
-    if (get(upcomingProps, alterable[index]) !== get(currentProps, alterable[index])) {
+    if (get(nextProps, alterable[index]) !== get(props, alterable[index])) {
       return true;
     }
   }

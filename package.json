@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require should test/",
-    "lint": "eslint index.js test/"
+    "lint": "eslint index.js test/",
+    "travis": "npm run test && npm run lint"
   },
   "keywords": [
     "react",
