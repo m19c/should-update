@@ -1,11 +1,12 @@
 {
   "name": "should-update",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A shouldComponentUpdate-wrapper",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require should test/",
-    "lint": "eslint index.js test/"
+    "lint": "eslint index.js test/",
+    "travis": "npm run test && npm run lint"
   },
   "keywords": [
     "react",

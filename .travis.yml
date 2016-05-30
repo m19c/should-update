@@ -1,5 +1,4 @@
 language: 'node_js'
 node_js:
   - '5.5.0'
-before_script: npm run lint
-script: test
+script: travis
