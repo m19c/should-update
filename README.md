@@ -65,7 +65,7 @@ or:
 import { createShouldUpdate } from 'should-update';
 
 class Some {
-  shouldComponentUpdate: createShouldUpdate(['some', 'value'])
+  shouldComponentUpdate: createShouldUpdate('some', 'value')
 }
 ```
 
