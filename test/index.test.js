@@ -17,6 +17,38 @@ describe('shouldUpdate', () => {
     ).should.be.ok();
   });
 
+  it('works with deep keys', () => {
+    shouldUpdate(
+      ['user.group.first.member.leader.email'],
+      {
+        user: {
+          group: {
+            first: {
+              member: {
+                leader: {
+                  email: 'jon@doe.com'
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        user: {
+          group: {
+            first: {
+              member: {
+                leader: {
+                  email: 'lara@doe.com'
+                }
+              }
+            }
+          }
+        }
+      }
+    ).should.be.ok();
+  });
+
   it('throws an error if the first argument is not an array', () => {
     (() => shouldUpdate(undefined)).should.throw();
   });
