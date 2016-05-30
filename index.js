@@ -19,7 +19,7 @@ import { get } from 'deep-property';
  *
  * @return {boolean}
  */
-export default function shouldUpdate(alterable, props, nextProps) {
+export function shouldUpdate(alterable, props, nextProps) {
   for (let index = 0; index < alterable.length; index++) {
     if (get(nextProps, alterable[index]) !== get(props, alterable[index])) {
       return true;
@@ -27,4 +27,18 @@ export default function shouldUpdate(alterable, props, nextProps) {
   }
 
   return false;
+}
+
+/**
+ * @example
+ * class MyComponent extends Component {
+ *   shouldUpdate: createShouldUpdate('id', 'user.id', 'user.firstname')
+ * }
+ *
+ * @return {function}
+ */
+export function createShouldUpdate(...alterable) {
+  return function shouldComponentUpdate(nextProps) {
+    return shouldUpdate(alterable, this.props, nextProps);
+  };
 }
