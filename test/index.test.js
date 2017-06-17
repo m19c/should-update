@@ -16,29 +16,29 @@ describe('should-update', () => {
       });
       mock.shouldComponentUpdate = createShouldUpdate('user.id');
 
-      mock.shouldComponentUpdate({ id: 2, user: { id: 2 } }).should.be.ok();
+      expect(mock.shouldComponentUpdate({ id: 2, user: { id: 2 } })).toBe(true);
     });
   });
 
   describe('shouldUpdate()', () => {
     it('returns false if no changes were made', () => {
-      shouldUpdate(
+      expect(shouldUpdate(
         ['id', 'user.name'],
         { id: 1, user: { name: 'Jon Doe' } },
         { id: 1, user: { name: 'Jon Doe' } }
-      ).should.be.not.ok();
+      )).toBe(false);
     });
 
     it('returns true changes were made', () => {
-      shouldUpdate(
+      expect(shouldUpdate(
         ['id', 'user.name'],
         { id: 1, user: { name: 'Jon Doe' } },
         { id: 1, user: { name: 'Lara Doe' } }
-      ).should.be.ok();
+      )).toBe(true);
     });
 
     it('works with deep keys', () => {
-      shouldUpdate(
+      expect(shouldUpdate(
         ['user.group.first.member.leader.email'],
         {
           user: {
@@ -66,11 +66,11 @@ describe('should-update', () => {
             }
           }
         }
-      ).should.be.ok();
+      )).toBe(true);
     });
 
     it('throws an error if the first argument is not an array', () => {
-      (() => shouldUpdate(undefined)).should.throw();
+      expect(() => shouldUpdate(undefined)).toThrow();
     });
   });
 });
