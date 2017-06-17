@@ -7,7 +7,8 @@
     "before": true,
     "after": true,
     "beforeEach": true,
-    "afterEach": true
+    "afterEach": true,
+    "expect": true
   },
   "rules": {
     "no-var": 0,
@@ -16,6 +17,7 @@
     "space-after-function-name": 0,
     "semi-spacing": [2, { "before": false, "after": true }],
     "no-param-reassign": 0,
-    "spaced-line-comment": 0
+    "spaced-line-comment": 0,
+    "no-plusplus": 0
   }
 }
